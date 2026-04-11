@@ -220,6 +220,12 @@ const moversAndShakers = [
 
 // --- COMPONENTS ---
 
+const Logo = ({ className = "w-8 h-8" }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" className={className} fill="currentColor">
+    <path fillRule="evenodd" clipRule="evenodd" d="M 50 15 L 85 85 L 15 85 Z M 55.5 36 L 39 69 L 72 69 Z" />
+  </svg>
+);
+
 const BlobButton = ({ children, className, onClick, variant = 'primary' }: any) => {
   const baseStyle = "px-6 py-3 font-medium transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2";
   const variants = {
@@ -278,13 +284,16 @@ const DashboardView = ({ t }: { t: any }) => (
       </Card>
 
       <div className="flex flex-col gap-3 h-full sm:col-span-2 lg:col-span-1">
-        <Card className="bg-gradient-to-br from-white/60 to-pastel-peach/30 border-white/50 flex flex-col justify-center items-center text-center flex-1 py-6">
-          <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full blob-1 flex items-center justify-center mb-3 shadow-sm">
-            <UploadCloud className="text-gray-700" size={24} />
+        <div className="bg-gradient-to-br from-pastel-peach to-pastel-pink border-2 border-white/60 flex flex-col justify-center items-center text-center flex-1 py-6 px-4 blob-4 shadow-xl hover:scale-105 transition-transform cursor-pointer relative overflow-hidden group min-h-[180px]">
+          <div className="absolute inset-0 bg-white/20 group-hover:bg-white/40 transition-colors" />
+          <div className="relative z-10 flex flex-col items-center w-[80%] mx-auto">
+            <div className="w-12 h-12 md:w-14 md:h-14 bg-white/90 rounded-full blob-1 flex items-center justify-center mb-3 shadow-sm backdrop-blur-sm">
+              <UploadCloud className="text-gray-800" size={24} />
+            </div>
+            <h3 className="font-bold text-gray-900 text-lg">{t.aiAutoEntry}</h3>
+            <p className="text-xs md:text-sm text-gray-700 mt-1 font-medium">{t.dropReceipt}</p>
           </div>
-          <h3 className="font-semibold text-gray-800">{t.aiAutoEntry}</h3>
-          <p className="text-xs md:text-sm text-gray-500 mt-1">{t.dropReceipt}</p>
-        </Card>
+        </div>
         <button className="w-full py-2.5 px-4 bg-white/60 hover:bg-white/80 transition-colors glass-panel rounded-2xl flex items-center justify-center gap-2 text-sm font-medium text-gray-700 border-white/50 shadow-sm">
           <Plus size={16} /> {t.manualEntry}
         </button>
@@ -593,17 +602,19 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-gray-800 font-sans overflow-hidden relative flex flex-col md:flex-row">
-      {/* Animated Background Blobs */}
-      <div className="fixed top-[-10%] left-[-10%] w-[60vw] md:w-[40vw] h-[60vw] md:h-[40vw] bg-pastel-purple opacity-40 blur-[80px] md:blur-[100px] blob-1 animate-[spin_30s_linear_infinite] pointer-events-none" />
-      <div className="fixed bottom-[-10%] right-[-5%] w-[70vw] md:w-[45vw] h-[70vw] md:h-[45vw] bg-pastel-mint opacity-40 blur-[100px] md:blur-[120px] blob-2 animate-[spin_40s_linear_infinite_reverse] pointer-events-none" />
-      <div className="fixed top-[40%] left-[30%] w-[50vw] md:w-[30vw] h-[50vw] md:h-[30vw] bg-pastel-peach opacity-30 blur-[70px] md:blur-[90px] blob-3 animate-[spin_35s_linear_infinite] pointer-events-none" />
+    <div className="min-h-screen bg-gradient-to-br from-pastel-pink/30 via-white/50 to-pastel-blue/30 text-gray-800 font-sans overflow-hidden relative flex flex-col md:flex-row">
+      {/* Animated Background Blobs (Mesh Gradient Effect) */}
+      <div className="fixed top-[-20%] left-[-10%] w-[80vw] md:w-[50vw] h-[80vw] md:h-[50vw] bg-pastel-purple opacity-70 blur-[100px] md:blur-[140px] blob-1 animate-[spin_40s_linear_infinite] pointer-events-none" />
+      <div className="fixed bottom-[-20%] right-[-10%] w-[90vw] md:w-[60vw] h-[90vw] md:h-[60vw] bg-pastel-mint opacity-70 blur-[100px] md:blur-[150px] blob-2 animate-[spin_50s_linear_infinite_reverse] pointer-events-none" />
+      <div className="fixed top-[20%] left-[30%] w-[70vw] md:w-[40vw] h-[70vw] md:h-[40vw] bg-pastel-peach opacity-60 blur-[90px] md:blur-[130px] blob-3 animate-[spin_35s_linear_infinite] pointer-events-none" />
+      <div className="fixed bottom-[10%] left-[-10%] w-[60vw] md:w-[40vw] h-[60vw] md:h-[40vw] bg-pastel-blue opacity-60 blur-[100px] md:blur-[140px] blob-4 animate-[spin_45s_linear_infinite] pointer-events-none" />
+      <div className="fixed top-[-10%] right-[10%] w-[60vw] md:w-[40vw] h-[60vw] md:h-[40vw] bg-pastel-pink opacity-60 blur-[100px] md:blur-[130px] blob-5 animate-[spin_55s_linear_infinite_reverse] pointer-events-none" />
       
       {/* Mobile Header */}
       <div className="md:hidden relative z-30 flex items-center justify-between p-4 glass-panel border-b border-white/40">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-gray-900 rounded-full blob-4 flex items-center justify-center text-white font-bold">
-            Δ
+          <div className="w-8 h-8 bg-gray-900 rounded-full blob-4 flex items-center justify-center text-white">
+            <Logo className="w-4 h-4" />
           </div>
           <span className="text-lg font-bold text-gray-900 tracking-tight">DeltaSpend</span>
         </div>
@@ -625,8 +636,8 @@ export default function App() {
       `}>
         <div className="hidden md:flex items-center justify-between mb-8 md:mb-12 px-2">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gray-900 rounded-full blob-4 flex items-center justify-center text-white font-bold text-xl">
-              Δ
+            <div className="w-10 h-10 bg-gray-900 rounded-full blob-4 flex items-center justify-center text-white">
+              <Logo className="w-5 h-5" />
             </div>
             <span className="text-xl font-bold text-gray-900 tracking-tight">DeltaSpend</span>
           </div>
@@ -702,9 +713,6 @@ export default function App() {
                 <Bell size={20} />
                 <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
               </button>
-              <BlobButton variant="primary" className="!py-2 !px-3 md:!px-4 text-xs md:text-sm whitespace-nowrap">
-                <Plus size={16} /> <span className="hidden sm:inline">{t.addExpense}</span>
-              </BlobButton>
             </div>
           </header>
 
