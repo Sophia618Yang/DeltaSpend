@@ -1,26 +1,19 @@
 import json
 from decimal import Decimal
 
+from google import genai
+from google.genai import types
+
 from app.core.config import settings
 from app.schemas.receipt import ParseReceiptResponse, ReceiptItem
 
 
 class OCRService:
     def __init__(self, api_key: str, model: str):
-        try:
-            from google import genai
-        except ModuleNotFoundError as exc:
-            raise RuntimeError(
-                "google-genai is required for RECEIPT_PARSER_PROVIDER=real. "
-                "Install backend requirements first."
-            ) from exc
-
         self.client = genai.Client(api_key=api_key)
         self.model = model
 
     def parse_receipt(self, *, image_bytes: bytes, mime_type: str) -> ParseReceiptResponse:
-        from google.genai import types
-
         prompt = (
             "You are extracting data from a financial purchase receipt. "
             "Be extremely precise. Return JSON only with keys: "
