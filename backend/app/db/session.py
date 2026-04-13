@@ -13,6 +13,10 @@ if is_sqlite:
         engine_kwargs["poolclass"] = StaticPool
 
 engine = create_engine(settings.database_url, **engine_kwargs)
+engine = create_engine(
+    settings.database_url,
+    connect_args={"check_same_thread": False} if is_sqlite else {},
+)
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False, class_=Session)
 
 

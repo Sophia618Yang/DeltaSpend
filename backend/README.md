@@ -31,7 +31,7 @@ All variables use the `DELTA_SPEND_` prefix:
 
 ## Unified Error Response
 
-All HTTP errors (including 400/413/422/429/500) follow the same envelope:
+All 429/422/500 errors follow the same envelope:
 
 ```json
 {

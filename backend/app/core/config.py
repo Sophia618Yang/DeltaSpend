@@ -13,8 +13,5 @@ class Settings(BaseSettings):
     create_expense_rate_limit: str = "10/minute"
     parse_receipt_rate_limit: str = "5/minute"
 
-    allowed_receipt_image_types: str = "image/jpeg,image/png,image/webp"
-    max_receipt_upload_size_mb: int = 10
-
 
 settings = Settings()
