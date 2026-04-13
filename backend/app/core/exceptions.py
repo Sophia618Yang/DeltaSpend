@@ -1,23 +1,8 @@
-from fastapi import HTTPException, Request
+from fastapi import Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 from app.schemas.error import ErrorDetail, ErrorPayload, ErrorResponse
-
-
-async def http_exception_handler(request: Request, exc: HTTPException) -> JSONResponse:
-    details: list[ErrorDetail] = []
-    if isinstance(exc.detail, str):
-        details = [ErrorDetail(message=exc.detail)]
-
-    payload = ErrorResponse(
-        error=ErrorPayload(
-            code="HTTP_ERROR",
-            message="Request failed.",
-            details=details,
-        )
-    )
-    return JSONResponse(status_code=exc.status_code, content=payload.model_dump())
 
 
 async def validation_exception_handler(request: Request, exc: RequestValidationError) -> JSONResponse:
