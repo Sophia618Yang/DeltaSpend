@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     default_rate_limit: str = "60/minute"
     read_expenses_rate_limit: str = "30/minute"
     create_expense_rate_limit: str = "10/minute"
+    parse_receipt_rate_limit: str = "5/minute"
 
 
 settings = Settings()

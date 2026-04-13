@@ -18,12 +18,14 @@ All variables use the `DELTA_SPEND_` prefix:
 - `DELTA_SPEND_DEFAULT_RATE_LIMIT` (default: `60/minute`)
 - `DELTA_SPEND_READ_EXPENSES_RATE_LIMIT` (default: `30/minute`)
 - `DELTA_SPEND_CREATE_EXPENSE_RATE_LIMIT` (default: `10/minute`)
+- `DELTA_SPEND_PARSE_RECEIPT_RATE_LIMIT` (default: `5/minute`)
 
 ## API Endpoints
 
 - `GET /api/v1/health`
 - `GET /api/v1/expenses`
 - `POST /api/v1/expenses`
+- `POST /api/v1/parse-receipt` (multipart form-data, field: `file`)
 
 ## Unified Error Response
 

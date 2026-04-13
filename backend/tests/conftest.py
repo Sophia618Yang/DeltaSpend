@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
 
+os.environ.setdefault("DELTA_SPEND_DATABASE_URL", "sqlite://")
 os.environ.setdefault("DELTA_SPEND_DATABASE_URL", "sqlite:///./test_delta_spend.db")
 
 from app.db.base import Base
