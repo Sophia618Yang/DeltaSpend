@@ -19,6 +19,8 @@ All variables use the `DELTA_SPEND_` prefix:
 - `DELTA_SPEND_READ_EXPENSES_RATE_LIMIT` (default: `30/minute`)
 - `DELTA_SPEND_CREATE_EXPENSE_RATE_LIMIT` (default: `10/minute`)
 - `DELTA_SPEND_PARSE_RECEIPT_RATE_LIMIT` (default: `5/minute`)
+- `DELTA_SPEND_ALLOWED_RECEIPT_IMAGE_TYPES` (default: `image/jpeg,image/png,image/webp`)
+- `DELTA_SPEND_MAX_RECEIPT_UPLOAD_SIZE_MB` (default: `10`)
 
 ## API Endpoints
 
