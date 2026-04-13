@@ -18,7 +18,6 @@ jobs:
       GEMINI_API_KEY: dummy-key-for-ci
       GEMINI_MODEL: gemini-2.5-flash
       DELTA_SPEND_DATABASE_URL: sqlite://
-      PYTHONPATH: .
 
     steps:
       - name: Checkout
@@ -35,4 +34,4 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run pytest
-        run: python -m pytest -q
+        run: pytest -q
