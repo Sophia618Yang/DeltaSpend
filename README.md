@@ -4,40 +4,16 @@
 
 # DeltaSpend
 
-DeltaSpend is a personal finance product concept focused on making spending patterns easier to understand through clean dashboards, subscription tracking, AI-guided insights, and group expense flows.
+DeltaSpend is a personal finance product concept that explores spending visibility, subscription awareness, AI-guided budgeting, and shared expense flows through an interactive frontend prototype.
 
-## Links
+## How To Review This Prototype
 
-- `Live Product`: Coming soon
-- `Interactive Prototype`: this repository
+This repository is best reviewed in two parts:
 
-## Prototype
+- `Local interactive review`: run the prototype locally to click through the interface
+- `Static visual review`: use screenshots in the README or related materials for quick visual reference
 
-This repository currently serves as the interactive product prototype.
-
-It is a standalone frontend build and does not require Google AI Studio to run.
-
-It is the best place to explore:
-
-- the current UI direction
-- the information architecture across key product areas
-- early interaction patterns for dashboard, subscriptions, insights, and group expenses
-
-When the production website is ready, it will be added as the primary link and this prototype will remain as supporting design material.
-
-## Prototype Scope
-
-The current prototype includes:
-
-- `Dashboard`: spending overview, charts, and recent transaction patterns
-- `Subscriptions`: recurring charge and free-trial management concepts
-- `AI Insights`: inflation, budget reshaping, and spending recommendations
-- `Groups`: collaborative expense tracking and settlement flows
-
-Supporting product and UX documentation lives in:
-
-- [docs/PRD.md](/Users/yangruofei/DeltaSpend/docs/PRD.md)
-- [docs/UX_Design.md](/Users/yangruofei/DeltaSpend/docs/UX_Design.md)
+The main experience is the local interactive prototype. Screenshots are intended to support that review, not replace it.
 
 ## Run Locally
 
@@ -45,9 +21,36 @@ Prerequisite: `Node.js`
 
 1. Install dependencies with `npm install`
 2. Start the prototype with `npm run dev`
-3. Open the local Vite URL in your browser
+3. Open `http://localhost:3000/` in your browser
+
+This prototype is a standalone frontend build and does not require Google AI Studio or any API key to run.
+
+## Preview Images
+
+These previews are static references. The recommended review path is still to run the prototype locally and click through the flows.
+
+![Dashboard preview](./docs/screenshots/dashboard.png)
+![Subscriptions preview](./docs/screenshots/subscriptions.png)
+![AI insights preview](./docs/screenshots/insights.png)
+![Groups preview](./docs/screenshots/groups.png)
+
+## What To Look At
+
+The current prototype covers:
+
+- `Dashboard`: spending overview, charts, and recent transaction patterns
+- `Subscriptions`: recurring charge and free-trial management concepts
+- `AI Insights`: inflation, budget reshaping, and spending recommendations
+- `Groups`: collaborative expense tracking and settlement flows
+
+## Design Materials
+
+Supporting product and UX documentation:
+
+- [docs/PRD.md](/Users/yangruofei/DeltaSpend/docs/PRD.md)
+- [docs/UX_Design.md](/Users/yangruofei/DeltaSpend/docs/UX_Design.md)
 
 ## Notes
 
-- This prototype runs as a standalone frontend demo with mocked product data and interactions
-- A production-facing website link will be added later so the README can clearly separate product access from prototype exploration
+- The current implementation uses mocked data and interaction flows for product review
+- A production website may be added later, but this repository currently serves as the prototype review environment

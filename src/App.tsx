@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   LayoutDashboard, 
   CreditCard, 
@@ -573,8 +573,19 @@ const GroupsView = ({ t }: { t: any }) => (
 
 // --- MAIN APP ---
 
+const validTabs = ['dashboard', 'subscriptions', 'insights', 'groups'] as const;
+
+const getInitialTab = () => {
+  if (typeof window === 'undefined') {
+    return 'dashboard';
+  }
+
+  const tab = new URLSearchParams(window.location.search).get('tab');
+  return validTabs.includes(tab as (typeof validTabs)[number]) ? tab! : 'dashboard';
+};
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [activeTab, setActiveTab] = useState(getInitialTab);
   const [lang, setLang] = useState<'en' | 'zh'>('en');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
@@ -600,6 +611,16 @@ export default function App() {
   const toggleLang = () => {
     setLang(prev => prev === 'en' ? 'zh' : 'en');
   };
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('tab', activeTab);
+    window.history.replaceState({}, '', url);
+  }, [activeTab]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pastel-pink/30 via-white/50 to-pastel-blue/30 text-gray-800 font-sans overflow-hidden relative flex flex-col md:flex-row">
