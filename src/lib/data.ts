@@ -13,7 +13,7 @@ import type {
   TrialReminderInput,
 } from '@/src/types';
 import {CATEGORY_COLORS, DAILY_PARSE_LIMIT, MAX_IMAGE_SIZE_BYTES, MAX_PDF_SIZE_BYTES, STORAGE_BUCKET} from '@/src/lib/constants';
-import {getSupabaseClient, hasSupabaseConfig} from '@/src/lib/supabase';
+import {getAuthRedirectUrl, getSupabaseClient, hasSupabaseConfig} from '@/src/lib/supabase';
 import {formatDateLabel, slugify, uid} from '@/src/lib/utils';
 
 async function invokeFunction<TResponse>(
@@ -274,11 +274,10 @@ async function uploadToSupabase(userId: string, file: File) {
 export async function signInWithEmail(email: string, displayName: string) {
   const supabase = getSupabaseClient();
   if (supabase) {
-    const redirectTo = window.location.origin;
     const {error} = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: redirectTo,
+        emailRedirectTo: getAuthRedirectUrl(),
         data: {
           display_name: displayName,
         },

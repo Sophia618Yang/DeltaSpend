@@ -1,6 +1,7 @@
 import {createContext, useContext, useEffect, useMemo, useState, type ReactNode} from 'react';
 import type {AppUser} from '@/src/types';
 import {getCurrentUser, isDemoMode, signInWithEmail, signOutUser} from '@/src/lib/data';
+import {getSupabaseClient} from '@/src/lib/supabase';
 
 interface AuthContextValue {
   user: AppUser | null;
@@ -17,9 +18,42 @@ export function AuthProvider({children}: {children: ReactNode}) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const supabase = getSupabaseClient();
+    let active = true;
+
     getCurrentUser()
-      .then(setUser)
-      .finally(() => setLoading(false));
+      .then((nextUser) => {
+        if (active) {
+          setUser(nextUser);
+        }
+      })
+      .finally(() => {
+        if (active) {
+          setLoading(false);
+        }
+      });
+
+    if (!supabase) {
+      return () => {
+        active = false;
+      };
+    }
+
+    const {
+      data: {subscription},
+    } = supabase.auth.onAuthStateChange(() => {
+      void getCurrentUser().then((nextUser) => {
+        if (active) {
+          setUser(nextUser);
+          setLoading(false);
+        }
+      });
+    });
+
+    return () => {
+      active = false;
+      subscription.unsubscribe();
+    };
   }, []);
 
   const value = useMemo<AuthContextValue>(
